@@ -19,6 +19,30 @@ class Memory:
                 "care": 0
             },
 
+            "emotions": {
+                "joy": 0,
+                "happiness": 0,
+                "affection": 0,
+                "hope": 0,
+                "enthusiasm": 0,
+                "fun": 0,
+
+                "anger": 0,
+                "hatred": 0,
+                "anxiety": 0,
+                "disgust": 0,
+                "guilt": 0,
+                "fear": 0,
+                "sadness": 0,
+                "depression": 0,
+                "frustration": 0,
+
+                "jealousy": 0,
+                "envy": 0,
+                "obsession": 0,
+                "anguish": 0
+            },
+
             "history": [],
             "preferences": {},
             "events": {}
@@ -71,11 +95,26 @@ class Memory:
     def get_event(self, name):
         return self.data["events"].get(name, 0)
 
+class Personality:
+    def __init__(self):
+        self.traits = {
+
+            "attachment": 40,
+            "dependency": 25,
+            "jealousy": 20,
+            "sensitivity": 50,
+            "trust": 50,
+            "possessiveness": 15 
+        }
+
 
 class Mood:
-    def __init__(self):
+    def __init__(self, memory=None):
+        if memory:
+            self.emotions = memory.data["emotions"]
 
-        self.emotions = {
+        else:
+            self.emotions = {
 
             # Positives
             "joy": 0,
@@ -102,6 +141,36 @@ class Mood:
             "obsession": 0,
             "anguish": 0
         }
+            
+            self.groups = {
+                "positive": [
+                    "joy",
+                    "happiness",
+                    "affection",
+                    "hope",
+                    "enthusiasm",
+                    "fun"
+                ],
+
+                "negative": [
+                    "anger",
+                    "hatred",
+                    "anxiety",
+                    "disgust",
+                    "guilt",
+                    "fear",
+                    "sadness",
+                    "depression",
+                    "frustration"
+                ],
+
+                "obsessive": [
+                    "jealousy",
+                    "envy",
+                    "obsession",
+                    "anguish"
+                ]
+            }
 
     def limit(self):
         for mood in self.emotions:
@@ -110,8 +179,20 @@ class Mood:
                 min(100, self.emotions[mood])
             )
 
-    def balance(self):
-        pass
+    def evolve(self):
+        if self.emotions["joy"] >= 100:
+            self.emotions["joy"] = 0
+            self.emotions["happiness"] +=25
+
+        if self.emotions["sadness"] >= 100:
+            self.emotions["sadness"] = 0
+            self.emotions["depression"] +=25
+
+        if self.emotions["anger"] >=100:
+            self.emotions["anger"] = 0
+            self.emotions["hatred"] +=25
+
+        self.limit()
 
     def adjust(self, emotion, value):
         if emotion in self.emotions:
@@ -120,27 +201,40 @@ class Mood:
         self.limit()
 
     def pass_time(self):
-        for mood in self.emotions:
-            if self.emotions[mood] > 0:
-                self.emotions[mood] -= 1
+        for emotion in self.emotions:
+            if self.emotions[emotion] < 0:
+                continue
+
+            if emotion == "depression":
+                self.emotions["emotion"] -=0.1
+
+            elif emotion == "happiness":
+                self.emotions["emotion"] -=0.2
+
+            elif emotion == "hatred":
+                self.emotions["emotion"] -=0.2
+
+            else:
+                self.emotions[emotion] -=1
 
         self.limit()
 
     def state(self):
-        highest = max(self.emotions.values())
         
-        if highest ==0:
-            return "neutral"
-        
-        return max(
+        emotion = max(
             self.emotions,
             key=self.emotions.get
         )
 
+        return emotion, self.emotions[emotion]
+
     def show(self):
         for name, value in self.emotions.items():
             print(f"{name.capitalize()}: {value}")
-
+    
+    def save_emotions(self, memory):
+        memory.data["emotions"] = self.emotions
+        memory.save()
 
 memory = Memory()
 
