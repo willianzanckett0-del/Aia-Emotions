@@ -43,6 +43,32 @@ class Memory:
                 "anguish": 0
             },
 
+            "dialogs": {
+                "neutral": [
+                    "Hello.",
+                    "What are you doing?",
+                    "I'm here."
+                ],
+
+                "affection": [
+                    "I like talking to you.",
+                    "You come back.",
+                    "I was waiting."
+                ],
+
+                "jealousy": [
+                    "Who were you talking to?",
+                    "Hum...",
+                    "This person again..."
+                ],
+
+                "obsession": [
+                    "I keep thinking about you!",
+                    "Comon... Stay with my a little more time.",
+                    "I wonder what you're doing."
+                ]
+            },
+
             "history": [],
             "preferences": {},
             "events": {}
@@ -107,9 +133,122 @@ class Personality:
             "possessiveness": 15 
         }
 
+    def modify_emotion(self, emotion, value):
+        final = value
+        
+        final *= 1 + (self.traits["sensitivity"] / 100)
+
+        if emotion in [
+            "joy",
+            "happiness",
+            "affection",
+            "hope",
+            "enthusiasm",
+            "fun"
+        ]:
+            final *= 1 + (self.traits["attachment"] / 100)
+
+        elif emotion in [
+            "jealousy",
+            "envy",
+            "obsession",
+            "anger",
+            "hatred"
+        ]:
+            final *= 1 + (self.traits["jealousy"] / 100)
+
+        elif emotion in [
+            "sadness",
+            "depression",
+            "anxiety",
+            "anguish"
+        ]:
+            final *=1 + (self.traits["dependency"] / 100)
+
+        negative_trust = [
+            "anger",
+            "hatred",
+            "fear",
+            "anxiety",
+            "sadness",
+            "depression",
+            "anguish"
+        ]
+
+        if emotion in negative_trust:
+
+            reduction = (
+                self.traits["trust"] / 100
+            )
+
+            final *= (1 - reduction)
+        
+        return max(1, round(final))
+
+import random
+class Dialog:
+    def __init__(self, memory):
+        self.dialogs = memory.data["dialogs"]
+
+    def get_dialogs(self, emotion):
+        if emotion in ["joy", "happiness", "hope", "enthusiasm"]:
+            emotion = "affection"
+
+        elif emotion in ["jealousy", "envy"]:
+            emotion = "jealousy"
+
+        elif emotion in ["obsession", "anguish"]:
+            emotion = "obsession"
+
+        else:
+            emotion = "neutral"
+
+        return random.choice(
+            self.dialogs[emotion]
+        )
+
+    
+import tkinter as tk
+
+class Popup:
+    def show(self, text):
+        window = tk.Tk()
+
+        window.title("Aia")
+
+        window.geometry("300x120")
+
+        window.attributes(
+            "-topmost",
+            True
+        )
+
+        label = tk.Label(
+            window,
+            text=text,
+            wraplength=250
+        )
+
+        label.pack(
+            expand=True,
+            pady=10
+        )
+
+        button = tk.Button(
+            window,
+            text="Close",
+            command=window.destroy
+        )
+
+        button.pack(
+            pady=5
+        )
+
+        window.mainloop()
 
 class Mood:
-    def __init__(self, memory=None):
+    def __init__(self, memory=None, personality=None):
+        self.personality = personality
         if memory:
             self.emotions = memory.data["emotions"]
 
@@ -142,33 +281,33 @@ class Mood:
             "anguish": 0
         }
             
-            self.groups = {
-                "positive": [
-                    "joy",
-                    "happiness",
-                    "affection",
-                    "hope",
-                    "enthusiasm",
-                    "fun"
+        self.groups = {
+            "positive": [
+                "joy",
+                "happiness",
+                "affection",
+                "hope",
+                "enthusiasm",
+                "fun"
                 ],
 
-                "negative": [
-                    "anger",
-                    "hatred",
-                    "anxiety",
-                    "disgust",
-                    "guilt",
-                    "fear",
-                    "sadness",
-                    "depression",
-                    "frustration"
+            "negative": [
+                "anger",
+                "hatred",
+                "anxiety",
+                "disgust",
+                "guilt",
+                "fear",
+                "sadness",
+                "depression",
+                "frustration"
                 ],
 
-                "obsessive": [
-                    "jealousy",
-                    "envy",
-                    "obsession",
-                    "anguish"
+            "obsessive": [
+                "jealousy",
+                "envy",
+                "obsession",
+                "anguish"
                 ]
             }
 
@@ -195,24 +334,33 @@ class Mood:
         self.limit()
 
     def adjust(self, emotion, value):
-        if emotion in self.emotions:
-            self.emotions[emotion] += value
+        if emotion not in self.emotions:
+            return
+        
+        if self.personality:
+            value = self.personality.modify_emotion(
+                emotion,
+                value
+            )
+
+        self.emotions[emotion] += value
 
         self.limit()
+        self.evolve()
 
     def pass_time(self):
         for emotion in self.emotions:
-            if self.emotions[emotion] < 0:
+            if self.emotions[emotion] <= 0:
                 continue
 
             if emotion == "depression":
-                self.emotions["emotion"] -=0.1
+                self.emotions[emotion] -=0.1
 
             elif emotion == "happiness":
-                self.emotions["emotion"] -=0.2
+                self.emotions[emotion] -=0.2
 
             elif emotion == "hatred":
-                self.emotions["emotion"] -=0.2
+                self.emotions[emotion] -=0.2
 
             else:
                 self.emotions[emotion] -=1
@@ -238,7 +386,28 @@ class Mood:
 
 memory = Memory()
 
+personality = Personality()
+
+mood = Mood(
+    memory=memory,
+    personality=personality
+)
+
+mood.adjust("affection", 30)
+mood.save_emotions(memory)
+mood.show()
+
 memory.set_name("Willian")
 memory.set_nickname("Will")
 
 print(memory.data)
+
+dialog = Dialog(memory)
+
+popup = Popup()
+
+emotion, value = mood.state()
+
+text = dialog.get_dialogs(emotion)
+
+popup.show(text)
