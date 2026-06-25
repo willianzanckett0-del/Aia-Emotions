@@ -8,18 +8,10 @@
         "trust": 0,
         "care": 0
     },
-    "personality": {
-        "attachment": 0,
-        "dependency": 0,
-        "jealousy": 0,
-        "sensitivity": 0,
-        "trust": 0,
-        "possessiveness": 0
-    },
     "emotions": {
         "joy": 0,
         "happiness": 0,
-        "affection": 0,
+        "affection": 100,
         "hope": 0,
         "enthusiasm": 0,
         "fun": 0,
@@ -36,6 +28,28 @@
         "envy": 0,
         "obsession": 0,
         "anguish": 0
+    },
+    "dialogs": {
+        "neutral": [
+            "Hello.",
+            "What are you doing?",
+            "I'm here."
+        ],
+        "affection": [
+            "I like talking to you.",
+            "You come back.",
+            "I was waiting."
+        ],
+        "jealousy": [
+            "Who were you talking to?",
+            "Hum...",
+            "This person again..."
+        ],
+        "obsession": [
+            "I keep thinking about you!",
+            "Comon... Stay with my a little more time.",
+            "I wonder what you're doing."
+        ]
     },
     "history": [],
     "preferences": {},
