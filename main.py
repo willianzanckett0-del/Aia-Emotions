@@ -210,41 +210,108 @@ class Dialog:
     
 import tkinter as tk
 
-class Popup:
-    def show(self, text):
-        window = tk.Tk()
+class ChatWindow:
+    def __init__(self):
+        self.window = tk.Tk()
 
-        window.title("Aia")
+        self.window.title("Aia")
+        self.window.geometry("420x600")
+        self.window.configure(bg="#111111")
+        self.window.resizable(False, False)
+        self.window.attributes("-topmost", True)
 
-        window.geometry("300x120")
+        title = tk.Label(
+            self.window,
+            text="Aia",
+            bg="#111111",
+            fg="white",
+            font=("Segoe UI", 16, "bold")
+        )
+        title.pack(pady=10)
 
-        window.attributes(
-            "-topmost",
-            True
+        self.chat = tk.Text(
+            self.window,
+            bg="#111111",
+            fg="white",
+            insertbackground="white",
+            wrap="word",
+            state="disabled",
+            relief="flat",
+            font=("Segoe UI", 11)
         )
 
-        label = tk.Label(
-            window,
-            text=text,
-            wraplength=250
-        )
-
-        label.pack(
+        self.chat.pack(
+            fill="both",
             expand=True,
-            pady=10
+            padx=10
         )
 
-        button = tk.Button(
-            window,
-            text="Close",
-            command=window.destroy
+        self.entry = tk.Entry(
+            self.window,
+            bg="#222222",
+            fg="white",
+            insertbackground="white",
+            font=("Segoe UI", 11)
         )
 
-        button.pack(
-            pady=5
+        self.entry.pack(
+            fill="x",
+            padx=10,
+            pady=(8,5)
         )
 
-        window.mainloop()
+        self.button = tk.Button(
+            self.window,
+            text="Send",
+            bg="#222222",
+            fg="white",
+            activebackground="#444444",
+            command=self.send_message
+        )
+
+        self.button.pack(
+            pady=(0,10)    
+        )
+
+        self.entry.bind("<Return>", self.send_message)
+    
+    def add_ai_message(self, text):
+
+        self.chat.config(state="normal")
+
+        self.chat.insert(
+            "end",
+            f"Aia: {text}\n\n"
+        )
+
+        self.chat.config(state="disabled")
+        self.chat.see("end")
+
+    def add_user_message(self, text):
+
+        self.chat.config(state="normal")
+
+        self.chat.insert(
+            "end",
+            f"You: {text}\n\n"
+        )
+
+        self.chat.config(state="disabled")
+        self.chat.see("end")
+
+    def send_message(self, event=None):
+
+        text = self.entry.get().strip()
+
+        if not text:
+            return
+        
+        self.add_user_message(text)
+
+        self.entry.delete(0, "end")
+    
+    def start(self):
+        self.window.mainloop()
 
 class Mood:
     def __init__(self, memory=None, personality=None):
@@ -375,10 +442,6 @@ class Mood:
         )
 
         return emotion, self.emotions[emotion]
-
-    def show(self):
-        for name, value in self.emotions.items():
-            print(f"{name.capitalize()}: {value}")
     
     def save_emotions(self, memory):
         memory.data["emotions"] = self.emotions
@@ -395,19 +458,19 @@ mood = Mood(
 
 mood.adjust("affection", 30)
 mood.save_emotions(memory)
-mood.show()
 
 memory.set_name("Willian")
 memory.set_nickname("Will")
 
-print(memory.data)
-
 dialog = Dialog(memory)
 
-popup = Popup()
+chat = ChatWindow()
 
 emotion, value = mood.state()
 
 text = dialog.get_dialogs(emotion)
 
-popup.show(text)
+chat.add_ai_message(text)
+
+chat.start()
+
