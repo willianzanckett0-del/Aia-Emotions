@@ -1,0 +1,28 @@
+Aia/
+│
+├── main.py
+│
+├── core/
+│   ├── memory.py
+│   ├── personality.py
+│   ├── mood.py
+│   └── dialog.py
+│
+├── data/
+│   ├── default_memory.json
+│   ├── dialogs.json
+│   ├── personalities.json
+│   └── events.json
+│
+├── saves/
+│   └── memory.json
+│
+├── ui/
+│   └── chat_window.py
+│
+|└── assets/
+|   ├── images/
+|   ├── icons/
+|   └── sounds/
+|
+|———— main.py
