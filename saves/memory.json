@@ -29,28 +29,7 @@
         "obsession": 0,
         "anguish": 0
     },
-    "dialogs": {
-        "neutral": [
-            "Hello.",
-            "What are you doing?",
-            "I'm here."
-        ],
-        "affection": [
-            "I like talking to you.",
-            "You come back.",
-            "I was waiting."
-        ],
-        "jealousy": [
-            "Who were you talking to?",
-            "Hum...",
-            "This person again..."
-        ],
-        "obsession": [
-            "I keep thinking about you!",
-            "Comon... Stay with my a little more time.",
-            "I wonder what you're doing."
-        ]
-    },
+    
     "history": [],
     "preferences": {},
     "events": {}
