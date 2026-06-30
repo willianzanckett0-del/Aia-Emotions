@@ -1,0 +1,71 @@
+{
+    "greetings": [
+        {
+            "option": "Hello.",
+            "response": "Hello.",
+            "next": "general_questions"
+        },
+        {
+            "option": "Good morning.",
+            "response": "Good morning.",
+            "next": "general_questions"
+        },
+        {
+            "option": "Hi, Aia.",
+            "response": "You remembered my name.",
+            "next": "general_questions"
+        },
+        {
+            "option": "Who are you?",
+            "response": "...I'm Aia.",
+            "next": "general_questions"
+        }
+    ],
+
+    "general_questions": [
+        {
+            "option": "Why are you called Aia?",
+            "response": "Because you give me this name.",
+            "next": "general_questions"
+        },
+        {
+            "option": "What's your favorite color?",
+            "response": "hmm... crimson red, I think.",
+            "next": "general_questions"
+        },
+        {
+            "option": "Is your system working properly?",
+            "response": "If I'm answering your questions, then I believe so.",
+            "next": "general_questions"
+        },
+        {
+            "option": "I have to go",
+            "response": "Ho... Ok, I will be waiting.",
+            "next": "general_questions"
+        }
+    ],
+
+    "neutral": [
+        "Hello.",
+        "What are you doing?",
+        "I'm here."
+    ],
+
+    "affection": [
+        "I like talking to you.",
+        "You come back.",
+        "I was waiting."
+    ],
+
+    "jealousy": [
+        "Who were you talking to?",
+        "Hum...",
+        "This person again..."
+    ],
+
+    "obsession": [
+        "I keep thinking about you!",
+        "Come on... Stay with me a little more.",
+        "I wonder what you're doing."
+    ]
+}
