@@ -18,6 +18,14 @@ The goal is to build an assistant that feels less like a tool and more like a pr
 
 ---
 
+## 🚧 Development Status
+
+Aia is currently under active development.
+
+The project is still evolving, with new systems, improvements and features being added over time. Some components may change as the architecture grows and new ideas are implemented.
+
+---
+
 ## 💾 Memory System
 
 Aia contains a persistent memory system responsible for storing important information about the user and previous interactions.
@@ -102,5 +110,45 @@ These values influence how Aia behaves and responds during conversations.
 
 ---
 
-## 🏗️ Project Structure
+## ⚙️ Current Features
+
+✅ Graphical interface  
+✅ Persistent memory  
+✅ Dialogue choices  
+✅ Emotional tracking  
+✅ Personality framework  
+✅ Conversation states  
+✅ Custom icon and visual identity  
+
+---
+
+## 🚧 Future Development
+
+Planned systems:
+
+- Advanced memory recognition
+- More complex personality changes
+- Relationship progression
+- More emotional interactions
+- Expanded dialogue trees
+- Voice interaction
+- Visual improvements
+
+---
+
+## 🩸 Project Vision
+
+Aia is not designed to be just another assistant.
+
+The project explores the idea of creating a digital character that can interact, remember, change and evolve through experiences.
+
+A system where conversations are not only answers, but a continuous relationship between user and artificial intelligence.
+
+<hr>
+
+<p align="center">
+<i>
+"A memory is what makes an interaction become a story."
+</i>
+</p>
 
