@@ -1,0 +1,42 @@
+ [
+    {
+        "option": "Hello.",
+        "response": "Hello.",
+
+        "effect": {
+            "joy": 10
+        },
+
+        "next": "general_questions"
+    },
+    {
+        "option": "Good morning.",
+        "response": "Good morning.",
+
+        "effect": {
+            "joy": 10
+        },
+
+        "next": "general_questions"
+    },
+    {
+        "option": "Hi, Aia.",
+        "response": "I'm glad to see you again..",
+
+        "effect": {
+            "joy": 20
+        },
+
+        "next": "general_questions"
+    },
+    {
+        "option": "Who are you?",
+        "response": "I'm Aia, your personal virtual assistant.",
+
+        "effect": {
+            "enthusiasm": 10
+        },
+
+        "next": "general_questions"
+    }
+]

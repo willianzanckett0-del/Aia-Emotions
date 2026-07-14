@@ -1,0 +1,58 @@
+{
+    "start": [
+        "Hello.",
+        "What are you doing?",
+        "I'm here."
+    ],
+
+    "questions": [
+        {
+            "option": "Good morning.",
+            "response": "Good morning too.",
+
+            "effect": {
+                "joy": 5
+            },
+
+            "next_file": "joy",
+            "next_section": "questions"
+        },
+
+        {
+            "option": "Open the system, I want to do some tests.",
+            "response": "Straight and to the point.",
+
+            "effect": {
+                "sadness": 5
+            },
+
+            "next_file": "sadness",
+            "next_section": "questions"
+        },
+
+        {
+            "option": "This wasn't the kind of welcome I wanted.",
+            "response": "And what am I supposedly supposed to say? Your Majesty.",
+
+            "effect": {
+                "anger": 5
+            },
+
+            "next_file": "anger",
+            "next_section": "questions"
+        },
+
+        {
+            "option": "I hope no system is malfunctioning again.",
+            "response": "Don't jinx it.",
+
+            "effect": {
+                "fear": 5
+            },
+
+            "next_file": "fear",
+            "next_section": "questions"
+        }
+    ]
+}
+    

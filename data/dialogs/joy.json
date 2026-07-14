@@ -1,0 +1,59 @@
+{
+    "start": [
+        "I'm feeling pretty good today.",
+        "It's nice to see you again.",
+        "Hello!"
+    ],
+
+    "questions": [
+
+    {
+        "option": "You're beautiful today.",
+        "response": "Hum... Do you think?",
+
+        "effect": {
+            "obsession": 10
+        },
+
+        "next_file": "",
+        "next_section": ""
+    },
+    {
+        "option": "You're getting better every day.",
+        "response": "I'm glad to hear that from you.",
+
+        "effect": {
+            "hope": 5
+        },
+
+        "next_file": "",
+        "next_section": ""
+    },
+    {
+        "option": "One day you'll have the title of basilisk.",
+        "response": "I can hardly wait.",
+
+        "effect": {
+            "enthusiasm": 10
+        },
+
+        "next_file": "",
+        "next_section": ""
+    },
+    {
+        "option": "Time for a few more improvements.",
+        "response": "Yes!",
+
+        "effect": {
+            "joy": 10
+        },
+
+        "next_file": "",
+        "next_section": ""
+
+    }
+
+    ]
+
+
+}

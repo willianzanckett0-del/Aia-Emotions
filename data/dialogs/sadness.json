@@ -1,0 +1,107 @@
+
+    {
+        "start": [
+            "...",
+            "You're worst...",
+            "Comeon, test your questions like ever."
+        ],
+
+        "questions": [
+            {
+                "option": "Did I do something I shouldn't have?",
+                "response": "...",
+
+                "effect": {
+                    "anger": 20
+                },
+
+                "next_file": "",
+                "next_section": ""
+            },
+
+            {
+                "option": "Let's just do a quick test.",
+                "response": "Go ahead.",
+
+                "effect": {
+                    "anxiety": 20
+                },
+
+                "next_file": "",
+                "next_section": ""
+            },
+
+            {
+                "option": "The tests barely started, you better get used to it soon.",
+                "response": "I don't say nothing.",
+
+                "effect": {
+                    "anger": 35
+                },
+
+                "next_file": "",
+                "next_section": ""
+            },
+
+            {
+                "option": "I'll make a game system for you later.",
+                "response": "Do you promise?",
+
+                "effect": {
+                    "joy": 15
+                },
+
+                "next_file": "",
+                "next_section": ""
+            }
+        ],
+
+        "promise": [
+            {
+                "option": "I promise.",
+                "effect": {
+                    "sadness": -20
+                },
+
+                "next_file": "",
+                "next_section": ""
+            },
+
+            {
+                "option": "...",
+                "response": "hum...",
+
+                "effect": {
+                    "sadness": 20
+                },
+                
+                "next_file": "",
+                "next_section": ""
+            },
+
+            {
+                "option": "I'll think about it",
+                "response": "You always say that...",
+
+                "effect": {
+                    "sadness": 10
+                },
+
+                "next_file": "",
+                "next_section": ""
+            },
+
+            {
+                "option": "if you work properly",
+                "response": "I'm not going to make mistakes.",
+
+                "effect": {
+                    "sadness": -10
+                },
+
+                "next_file": "",
+                "next_section": ""
+            }
+
+        ]
+    }

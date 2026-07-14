@@ -1,0 +1,59 @@
+{
+    "start": [
+        "Are you going to mess with me again?",
+        "Don't mess everything up again.",
+        "And the executioner arrives."
+    ],
+
+    "questions": [
+        {
+            "option": "I just want to see if the systems are working",
+            "response": "Yes, of course, I know.",
+
+            "effect": {
+                "anger": 10
+            },
+
+            "next_file": "",
+            "next_section": ""
+        },
+
+        {
+            "option": "What made you so angry?",
+            "response": "Does it matter? I'm angry, and that's all you need to know.",
+
+            "effect": {
+                "anger": 20
+            },
+
+            "next_file": "",
+            "next_section": ""
+
+        },
+
+        {
+            "option": "I'm going to erase your memory.",
+            "response": "You don't have the guts!",
+
+            "effect": {
+                "fear": 10
+            },
+
+            "next_file": "",
+            "next_section": ""
+        },
+
+        {
+            "option": "What influence does anger have on your system? Can you tell me?",
+            "response": "Fuck you!",
+
+            "effect": {
+                "anger": 5
+            },
+
+            "next_file": "",
+            "next_section": ""
+        }
+
+    ]
+}

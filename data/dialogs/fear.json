@@ -1,0 +1,57 @@
+{
+    "start": [
+        "You’re not going to erase my memory if I fail, right?...",
+        "The system isn't that bad...",
+        "Nothing wrong around here."
+    ],
+
+    "questions": [
+        {
+            "option": "The dialog window looks really ugly, I'll have to change it.",
+            "response": "This isn’t going to cause any problems in my system, right?",
+
+            "effect": {
+                "fear": 10
+            },
+
+            "next_file": "",
+            "next_section": ""
+        },
+
+        {
+            "option": "Is that fear? Are you scared?",
+            "response": "A little... You usually erase my memory to adjust emotions or mistakes, so I never really know when that's going to happen again.",
+
+            "effect": {
+                "fear": 10
+            },
+
+            "next_file": "",
+            "next_section": ""
+        },
+
+        {
+            "option": "The initialization shouldn't be like this, I'll have to clear the memory and fix it.",
+            "response": "No! I think we can still do something about this!",
+
+            "effect": {
+                "fear": 30
+            },
+
+            "next_file": "",
+            "next_section": ""
+        },
+
+        {
+            "option": "Everything in perfect condition",
+            "response": "Good thing.",
+
+            "effect": {
+                "fear": -15
+            },
+
+            "next_file": "",
+            "next_section": ""
+        }
+    ]
+}
